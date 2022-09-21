@@ -1,0 +1,25 @@
+/* font arial mt bold */
+@font-face /*perintah untuk memanggil font eksternal*/ {
+  font-family: "font1"; /*memberikan nama bebas untuk font*/
+  src: url("./assets/font/font1.ttf"); /*memanggil file font eksternalnya di folder nexa*/
+}
+body {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+/* font lemon */
+@font-face {
+  font-family: "lemon-days";
+  src: url("./assets/font/Lemon Days.ttf");
+}
+@font-face {
+  font-family: "gil-sans-mt";
+  src: url("./assets/font/Gill Sans MT.ttf");
+}
+@font-face {
+  font-family: "ubuntu-bold";
+  src: url("./assets/font/Ubuntu-Bold.ttf");
+}

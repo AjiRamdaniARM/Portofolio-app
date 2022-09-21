@@ -1,0 +1,63 @@
+// penyimpanan color
+$colorWhite: #fff;
+$colorRed: rgb(255, 0, 0);
+$colorBlue: rgb(72, 0, 255);
+$colorAqua: rgb(0, 255, 242);
+$colorNavy: rgb(11, 114, 113);
+// color rgba
+$g-blue: linear-gradient(90deg, rgba(30, 0, 36, 1) 0%, rgba(25, 255, 245, 1) 0%, rgba(17, 0, 255, 1) 100%);
+
+.font1 {
+  font-family: "font1";
+}
+.text2 {
+  font-size: 36px;
+}
+.alert {
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 60px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.alert .symbol {
+  flex: 20%;
+}
+.alert .message {
+  flex: 80%;
+}
+
+#show {
+  visibility: hidden;
+  animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+}
+#hide {
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

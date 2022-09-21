@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# React js Tailwindcss Setup Example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Setting up Tailwind with reactjs is really simple, just install Tailwind:
 
-## Available Scripts
+```sh
+npm install tailwindcss postcss-cli postcss autoprefixer -D
+```
 
-In the project directory, you can run:
+We need to initialize Tailwind CSS by creating the default configurations. Type the command below in your terminal:
 
-### `npm start`
+```
+npx tailwind init tailwind.js --full
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Then add it to your PostCSS config (use a separate `postcss.config.js` file):
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```js
+const tailwindcss = require("tailwindcss");
+module.exports = {
+  plugins: [tailwindcss("./tailwind.js"), require("autoprefixer")],
+};
+```
 
-### `npm test`
+Next, create a CSS file for your Tailwind styles. We've stored in it `src/assets/tailwind.css` for this example:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-### `npm run build`
+Create `main.css` file at `src/assets/main.css`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Import our main.css file and delete `import './index.css';`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finally, import that CSS file at the bottom of your main `index.js` component:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+import './assets/main.css'
+```
 
-### `npm run eject`
+Your _index.js_ should look like this after the changes:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```import React from "react";
+import ReactDOM from "react-dom";
+import './assets/main.css';
+import App from "./App";
+ReactDOM.render(<App />, document.getElementById("root"));
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Configure Your App To Build Your CSS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+"scripts": {
+    "start": "npm run watch:css && react-scripts start",
+    "build": "npm run build:css && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+  },
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project setup
 
-## Learn More
+### Install dependences
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm install or npm i
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Compiles and hot-reloads for development
 
-### Code Splitting
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Compiles and minifies for production
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm run build
+```
